@@ -13,13 +13,27 @@
 	String name = request.getParameter("name");
 	String age = request.getParameter("age");
 	String gender = request.getParameter("gender");
-	String bithDate = request.getParameter("birthDate");
+	String birthDate = request.getParameter("birthDate");
+	
+	if(birthDate.length() != 6 ){
+		out.println("<script>");
+		out.println("alert('생년월일을 다시 입력해주세요(6자리 예시 : 991103)')");
+		out.println("location.href='fitnessMemInfo.jsp'");
+		out.println("</script> ");
+	}else if(Integer.parseInt(birthDate.charAt(3)+birthDate.charAt(4)+"") >12){
+		out.println("<script>");
+		out.println("alert('생년월일을 다시 입력해주세요')");
+		out.println("location.href='fitnessMemInfo.jsp'");
+		out.println("</script> ");
+	}
+	
+	
 	String period = request.getParameter("period");
 	out.println("<script>");
 	out.println("alert('회원가입을 축하합니다')");
-	out.println("</script>");
+	out.println("</script>  ");
 	
-	out.println(name + " 님 (" +age +", "+gender + ") 안녕하세요<br>");
+	out.println( name + " 님 (" +age +", "+gender + ") 안녕하세요<br>");
 	
 	out.println(" 나의 잔여 개월수 : "+ period+"<br><br><br>");
 	
@@ -32,7 +46,6 @@
 		}
 	}catch(NullPointerException e){
 		out.println("미선택 ㅠㅠ <br>");
-		
 	}
 	
 	
